@@ -1,21 +1,21 @@
 require 'date'
 
 class Item
-    attr_writer: genre, :author, :sourse, :labels
-    
-    def initialize(id, publish_date, archived:false)
-        @id = id
-        @publish_date = publish_date
-        @archive = archived
-    end
+  attr_writer :genre, :author, :source, :labels
 
-    def move_to_archive
-        @archive = true if can_be_archived?
-    end
+  def initialize(id, publish_date, archived: false)
+    @id = id
+    @publish_date = publish_date
+    @archive = archived
+  end
 
-    private
+  def move_to_archive
+    @archive = true if can_be_archived?
+  end
 
-    def can_be_archived?
-        return true if @publish_date < Date.today - 365
-    end
-end 
+  private
+
+  def can_be_archived?
+    return true if @publish_date < Date.today - 365
+  end
+end
