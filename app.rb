@@ -15,6 +15,9 @@ class App
     @books = []
     @albums = []
     @games = []
+    @authors = []
+    @labels = []
+    @genres = []
   end
 
   def option_select
