@@ -1,7 +1,9 @@
 require 'date'
 require_relative 'create_game'
+require_relative 'create_music_album'
 require_relative 'item'
 require_relative 'game'
+require_relative 'music_album'
 
 class App
   MENU_OPTIONS = {
@@ -39,7 +41,12 @@ class App
   end
 
   def list_albums
-    puts 'This will list the music albums'
+    return puts 'no albums found' if @albums.empty?
+
+    @albums.each_with_index do |album, index|
+      puts "#{index}) Publish_date: #{album.publish_date}, On_spotify: #{album.on_spotify},
+      Archived: #{album.archived}"
+    end
   end
 
   def list_games
@@ -68,7 +75,29 @@ class App
   end
 
   def add_album
-    puts 'This will add a music album'
+
+    print "Create an album\n"
+
+    album_func = MusicAlbumfunc.new 
+    publish_dates = album_func.publish_date
+
+    print 'On_spotify: ' 
+    on_spotify = gets.chomp
+
+    print 'archived_status [Y/N]: '
+    archived = gets.chomp.upcase
+    if %w[Y N].include?(archived)
+      if archived == 'Y'
+        archived = true
+      elsif archived == 'N'
+        archived = false
+      end
+      @albums << MusicAlbum.new(publish_dates, on_spotify, archived: archived)
+      print "Album created successfully!\n"
+    else
+      print "Invalid option type Y or N\n"
+      nil
+    end
   end
 
   def add_game
