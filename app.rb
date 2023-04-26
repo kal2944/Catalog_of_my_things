@@ -2,6 +2,7 @@ require 'date'
 require_relative 'create_game'
 require_relative 'item'
 require_relative 'game'
+require_relative 'author'
 
 class App
   MENU_OPTIONS = {
@@ -60,7 +61,11 @@ class App
   end
 
   def list_authors
-    puts 'This will list the authors'
+    return puts 'no author found' if @authors.empty?
+
+    @authors.each_with_index do |author, index|
+      puts "#{index}) First_name: #{author.first_name}, Last_name: #{author.last_name}"
+    end
   end
 
   def add_book
@@ -84,6 +89,7 @@ class App
 
     print 'archived_status [Y/N]: '
     archived = gets.chomp.upcase
+
     if %w[Y N].include?(archived)
       if archived == 'Y'
         archived = true
@@ -91,11 +97,21 @@ class App
         archived = false
       end
       @games << Game.new(publish_dates, multiplayer, last_played, archived: archived)
-      print "Games created successfully!\n"
+      create_author
     else
       print "Invalid option type Y or N\n"
       nil
     end
+  end
+
+  def create_author
+    print "Add author to the Game\n"
+    print 'First_name: '
+    first_name = gets.chomp
+    print 'Last_name: '
+    last_name = gets.chomp
+    @authors << Author.new(first_name, last_name)
+    print "Game created successfully!\n"
   end
 
   def exit_app
