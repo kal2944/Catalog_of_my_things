@@ -3,8 +3,8 @@ require 'date'
 class Item
   attr_writer :genre, :author, :source, :labels
 
-  def initialize(id, publish_date, archived: false)
-    @id = id
+  def initialize(publish_date, archived: false)
+    @id = Random.rand(1...1000)
     @publish_date = publish_date
     @archive = archived
   end
@@ -16,6 +16,6 @@ class Item
   private
 
   def can_be_archived?
-    return true if @publish_date < Date.today - 365
+    return true if @publish_date < Date.today.prev_year(10)
   end
 end
