@@ -75,13 +75,12 @@ class App
   end
 
   def add_album
-
     print "Create an album\n"
 
-    album_func = MusicAlbumfunc.new 
+    album_func = MusicAlbumfunc.new
     publish_dates = album_func.publish_date
 
-    print 'On_spotify: ' 
+    print 'On_spotify: '
     on_spotify = gets.chomp
 
     print 'archived_status [Y/N]: '
