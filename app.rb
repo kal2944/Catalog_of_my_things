@@ -1,3 +1,8 @@
+require 'date'
+require_relative 'create_game'
+require_relative 'item'
+require_relative 'game'
+
 class App
   MENU_OPTIONS = {
     '1' => :list_books,
@@ -38,7 +43,12 @@ class App
   end
 
   def list_games
-    puts 'This will list the games'
+    return puts 'no games found' if @games.empty?
+
+    @games.each_with_index do |game, index|
+      puts "#{index}) Publish_date: #{game.publish_date}, Multiplayer: #{game.multiplayer},
+      Last_played_at: #{game.last_played_at}"
+    end
   end
 
   def list_genres
@@ -62,7 +72,30 @@ class App
   end
 
   def add_game
-    puts 'This will add a game'
+    print "Create a game\n"
+
+    game_func = GameFunc.new
+    publish_dates = game_func.publish_date
+
+    print 'Multiplayer: '
+    multiplayer = gets.chomp
+
+    last_played = game_func.last_played_at
+
+    print 'archived_status [Y/N]: '
+    archived = gets.chomp.upcase
+    if %w[Y N].include?(archived)
+      if archived == 'Y'
+        archived = true
+      elsif archived == 'N'
+        archived = false
+      end
+      @games << Game.new(publish_dates, multiplayer, last_played, archived: archived)
+      print "Games created successfully!\n"
+    else
+      print "Invalid option type Y or N\n"
+      nil
+    end
   end
 
   def exit_app
