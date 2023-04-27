@@ -6,6 +6,7 @@ require_relative 'item'
 require_relative 'game'
 require_relative 'music_album'
 require_relative 'author'
+require_relative 'genre'
 require_relative 'save_load_game_data'
 
 class App
@@ -62,7 +63,11 @@ class App
   end
 
   def list_genres
-    puts 'This will list the genres'
+    return puts 'no genre found' if @genres.empty?
+
+    @genres.each_with_index do |genre, index|
+      puts "#{index}) Name: #{genre.name}"
+    end
   end
 
   def list_labels
