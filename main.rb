@@ -1,6 +1,8 @@
 require_relative 'app'
 
 class Main
+  app = App.new
+  app.load_data
   def initialize
     @app = App.new
   end
