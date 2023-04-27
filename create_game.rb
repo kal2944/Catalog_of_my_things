@@ -26,4 +26,13 @@ class GameFunc
     end
     last_played_at
   end
+
+  def create_author
+    print "Add author to the Game\n"
+    print 'First_name: '
+    first_name = gets.chomp
+    print 'Last_name: '
+    last_name = gets.chomp
+    Author.new(first_name, last_name)
+  end
 end
