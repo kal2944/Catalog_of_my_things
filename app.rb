@@ -7,6 +7,10 @@ require_relative 'game'
 require_relative 'music_album'
 require_relative 'author'
 require_relative 'save_load_game_data'
+require_relative 'book'
+require_relative 'create_book'
+require_relative 'catalog'
+
 
 class App
   MENU_OPTIONS = {
@@ -30,6 +34,13 @@ class App
     @authors = []
     @labels = []
     @genres = []
+    @catalog = Catalog.new
+   
+
+    book1 = CreateBook.create_book('The Catcher in the Rye', 'J.D. Salinger', '1951-07-16')
+    book2 = CreateBook.create_book('To Kill a Mockingbird', 'Harper Lee', '1960-07-11')
+    @catalog.add_item(book1)
+    @catalog.add_item(book2)
   end
 
   def option_select
@@ -40,9 +51,13 @@ class App
   end
 
   def list_books
-    puts 'This will list the books'
-  end
+    puts "list_books called" # debug print
+    return puts 'no books found' if @catalog.items.empty?
 
+    @catalog.items.each_with_index do |book, index|
+      puts "#{index}) Title: #{book.title}, Author: #{book.author}, Published: #{book.published_date}"
+    end
+  end
   def list_albums
     return puts 'no albums found' if @albums.empty?
 
@@ -66,7 +81,19 @@ class App
   end
 
   def list_labels
-    puts 'This will list the labels'
+    return puts 'No labels found.' if @labels.empty?
+
+    @labels.each_with_index do |label, index|
+      puts "#{index}) Label name: #{label.name}"
+      if label.items.empty?
+        puts "\tNo items in this label."
+      else
+        puts "\tItems in this label:"
+        label.items.each do |item|
+          puts "\t- #{item.title} (#{item.class})"
+        end
+      end
+    end
   end
 
   def list_authors
@@ -78,8 +105,21 @@ class App
   end
 
   def add_book
-    puts 'This will add a book'
+    puts "Create a book"
+    puts "Enter publisher:"
+    publisher_name = gets.chomp
+    publisher = Publisher.new(publisher_name)
+    puts "Enter cover state:"
+    cover_state = gets.chomp
+    puts "Enter ID:"
+    id = gets.chomp.to_i
+    puts "Enter publish date (yyyy-mm-dd):"
+    publish_date = gets.chomp
+    book = Book.new(publisher, cover_state, id, publish_date)
+    @catalog.add_item(book)  # add the book to the catalog
+    puts "Book created successfully!"
   end
+  
 
   def add_album
     print "Create an album\n"
