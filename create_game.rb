@@ -1,5 +1,6 @@
 class GameFunc
   def publish_date
+    print "Create a game\n"
     print "write publish_date (yyyy-mm-dd) \nPublish_date: "
     publish_date = gets.chomp
     if (publish_date.to_i.to_s == publish_date) || begin
@@ -25,5 +26,14 @@ class GameFunc
       nil
     end
     last_played_at
+  end
+
+  def create_author
+    print "Add author to the Game\n"
+    print 'First_name: '
+    first_name = gets.chomp
+    print 'Last_name: '
+    last_name = gets.chomp
+    Author.new(first_name, last_name)
   end
 end

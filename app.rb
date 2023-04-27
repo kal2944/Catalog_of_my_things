@@ -1,4 +1,5 @@
 require 'date'
+require 'json'
 require_relative 'create_game'
 require_relative 'create_music_album'
 require_relative 'item'
@@ -6,6 +7,7 @@ require_relative 'game'
 require_relative 'music_album'
 require_relative 'author'
 require_relative 'genre'
+require_relative 'save_load_game_data'
 
 class App
   MENU_OPTIONS = {
@@ -17,10 +19,12 @@ class App
     '6' => :list_authors,
     '7' => :add_book,
     '8' => :add_album,
-    '9' => :add_game
+    '9' => :add_game,
+    '10' => :exit_app
   }.freeze
 
   def initialize
+    @game_data = SaveLoadGameData.new
     @books = []
     @albums = []
     @games = []
@@ -35,8 +39,6 @@ class App
     send(action) if action
     exit_app unless action
   end
-
-  private
 
   def list_books
     puts 'This will list the books'
@@ -110,19 +112,13 @@ class App
   end
 
   def add_game
-    print "Create a game\n"
-
     game_func = GameFunc.new
     publish_dates = game_func.publish_date
-
     print 'Multiplayer: '
     multiplayer = gets.chomp
-
     last_played = game_func.last_played_at
-
     print 'archived_status [Y/N]: '
     archived = gets.chomp.upcase
-
     if %w[Y N].include?(archived)
       if archived == 'Y'
         archived = true
@@ -130,24 +126,26 @@ class App
         archived = false
       end
       @games << Game.new(publish_dates, multiplayer, last_played, archived: archived)
-      create_author
+      @authors << game_func.create_author
+      print "Game created successfully!\n"
     else
       print "Invalid option type Y or N\n"
       nil
     end
   end
 
-  def create_author
-    print "Add author to the Game\n"
-    print 'First_name: '
-    first_name = gets.chomp
-    print 'Last_name: '
-    last_name = gets.chomp
-    @authors << Author.new(first_name, last_name)
-    print "Game created successfully!\n"
+  def add_data
+    @game_data.saved_data(@games, @authors)
+  end
+
+  def load_data
+    load_game_data = @game_data.load_data
+    @games.concat(load_game_data[:games])
+    p load_game_data[:author]
   end
 
   def exit_app
+    add_data
     puts 'Thanks for using the app'
     exit
   end
