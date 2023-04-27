@@ -1,5 +1,6 @@
 class GameFunc
   def publish_date
+    print "Create a game\n"
     print "write publish_date (yyyy-mm-dd) \nPublish_date: "
     publish_date = gets.chomp
     if (publish_date.to_i.to_s == publish_date) || begin
