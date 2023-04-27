@@ -18,5 +18,4 @@ class Item
   def can_be_archived?
     return true if @publish_date < Date.today.prev_year(10)
   end
-  
 end
