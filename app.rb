@@ -141,7 +141,7 @@ class App
   def load_data
     load_game_data = @game_data.load_data
     @games.concat(load_game_data[:games])
-    p load_game_data[:author]
+    @authors.concat(load_game_data[:author])
   end
 
   def exit_app
