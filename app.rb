@@ -147,14 +147,6 @@ class App
     print "Game created successfully!\n"
   end
 
-  def create_genre
-    print "Add genre to the Game\n"
-    print 'Name: '
-    name = gets.chomp
-    @genres << Genre.new(name)
-    print "Genre created successfully!\n"
-  end
-
   def exit_app
     puts 'Thanks for using the app'
     exit
