@@ -60,7 +60,11 @@ class App
   end
 
   def list_genres
-    puts 'This will list the genres'
+    return puts 'no genre found' if @genres.empty?
+
+    @genres.each_with_index do |genre, index|
+      puts "#{index}) Name: #{genre.name}"
+    end
   end
 
   def list_labels

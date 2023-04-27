@@ -18,4 +18,9 @@ class Item
   def can_be_archived?
     return true if @publish_date < Date.today.prev_year(10)
   end
+
+  def add_genre(genre)
+    @genre = genre
+    genre.add_item(self)
+  end
 end
