@@ -5,6 +5,7 @@ require_relative 'item'
 require_relative 'game'
 require_relative 'music_album'
 require_relative 'author'
+require_relative 'genre'
 
 class App
   MENU_OPTIONS = {
@@ -144,6 +145,14 @@ class App
     last_name = gets.chomp
     @authors << Author.new(first_name, last_name)
     print "Game created successfully!\n"
+  end
+
+  def create_genre
+    print "Add genre to the Game\n"
+    print 'Name: '
+    name = gets.chomp
+    @genres << Genre.new(name)
+    print "Genre created successfully!\n"
   end
 
   def exit_app
