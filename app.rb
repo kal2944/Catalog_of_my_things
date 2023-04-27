@@ -8,6 +8,7 @@ require_relative 'music_album'
 require_relative 'author'
 require_relative 'genre'
 require_relative 'save_load_game_data'
+require_relative 'save_load_musicalbum_genre_data'
 
 class App
   MENU_OPTIONS = {
@@ -26,7 +27,7 @@ class App
   def initialize
     @game_data = SaveLoadGameData.new
     @books = []
-    @albums = []
+    @albums = SaveLoadMusicAlbumData.new
     @games = []
     @authors = []
     @labels = []
