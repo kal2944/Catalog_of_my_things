@@ -1,19 +1,26 @@
 require_relative '../label'
+require_relative '../book'
 
 describe Label do
   before(:each) do
-    @label = Label.new('Genesis of Github', 'red')
+    @book = Book.new('publisher', 'cover_state', '2022-09-09', archived: true)
+    @label = Label.new('title', 'color')
+    @label.add_item(@book)
   end
 
-  context 'create a book' do
-    label = Label.new('Genesis of Github', 'red')
+  it 'return a author object' do
+    expect(@label).to be_an_instance_of(Label)
+  end
 
-    it 'return name of the book' do
-      expect(label.title).to eq('Genesis of Github')
-    end
+  it 'return the correct title' do
+    expect(@label.title).to eq('title')
+  end
 
-    it 'return the state of the book' do
-      expect(label.color).to eq('red')
-    end
+  it 'return the correct color' do
+    expect(@label.color).to eq('color')
+  end
+
+  it 'adds a book to the items array' do
+    expect(@label.items).to include(@book)
   end
 end
