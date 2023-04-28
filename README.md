@@ -7,20 +7,15 @@
 
 </div>
 
-
-<!-- TABLE OF CONTENTS -->
-
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
-  - [Usage](#usage)
   - [Run tests](#run-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
@@ -28,10 +23,7 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ](#faq)
 - [📝 License](#license)
-
-<!-- PROJECT DESCRIPTION -->
 
 # 📖 Project Name
 
@@ -41,8 +33,6 @@
 ## 🛠 Built With <a name="built-with"></a>
 
 - `Ruby`
-
-<!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
@@ -64,11 +54,9 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO -->
-
 ## 🚀 Presentation Video<a name="live-demo"></a>
 
-Click [here]() 
+Click [here](https://drive.google.com/file/d/1rXClRrp-YVRYE70YvGX6l6iSaKHihfOs/view?usp=share_link) 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -114,11 +102,7 @@ $ bundle install (install dependencies)
 $ ruby main.rb (run the app locally)
 ```
 
-<!-- AUTHORS -->
-
 ## 👥 Authors <a name="authors"></a>
-
-> Mention all of the collaborators of this project.
 
 👤 **Kalkidan Daniel**
 
@@ -134,11 +118,11 @@ $ ruby main.rb (run the app locally)
 - linkedIn: [@linkedinhandle](https://www.linkedin.com/in/nsong-asoh/)
 
 
-👤 **Huzaifa Khan**
+👤 **Huzaifa khan**
 
-- GitHub: [@githubhandle](https://github.com/(https://github.com/huzaifakhan0308/)
-- Twitter: [@twitterhandke](https://twitter.com/huzaifakhan0308/)
-- linkedIn: [@linkedinhandle](https://www.linkedin.com/in/huzaifa-khan-938140256/)
+- GitHub: [@huzaifakhan0308](https://github.com/huzaifakhan0308)
+- Twitter: [@huzaifakhan0308](https://twitter.com/home?lang=en)
+- LinkedIn: [huzaifa khan](https://www.linkedin.com/in/huzaifa-khan-938140256/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -150,8 +134,6 @@ $ ruby main.rb (run the app locally)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTRIBUTING -->
-
 ## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome! Add suggestions by opening new issues.
@@ -160,15 +142,11 @@ Feel free to check the [issues page](https://github.com/kal2944/Catalog_of_my_th
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- SUPPORT -->
-
 ## ⭐️ Show your support <a name="support"></a>
 
 Give a ⭐️ if you like this project!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGEMENTS -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
@@ -177,8 +155,6 @@ Authors would like to thank:
 - Coding Partners
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
 
