@@ -1,3 +1,16 @@
 [
-
+  {
+    "id": 924,
+    "publish_date": "2018-09-10",
+    "multiplayer": "3 vs 3",
+    "last_played_at": "2021-12-12",
+    "archived": true
+  },
+  {
+    "id": 972,
+    "publish_date": "2010-05-18",
+    "multiplayer": "3 vs 5",
+    "last_played_at": "2015-01-13",
+    "archived": false
+  }
 ]
