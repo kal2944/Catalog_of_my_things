@@ -9,6 +9,7 @@ class Item
     @archive = archived
     @labels ||= []
     @author ||= []
+    @genre ||= []
   end
 
   def move_to_archive
