@@ -27,7 +27,8 @@ class App
   def initialize
     @game_data = SaveLoadGameData.new
     @books = []
-    @albums = SaveLoadMusicAlbumData.new
+    @music_album_data = SaveLoadMusicAlbumData.new
+    @albums = []
     @games = []
     @authors = []
     @labels = []
@@ -68,6 +69,14 @@ class App
 
     @genres.each_with_index do |genre, index|
       puts "#{index}) Name: #{genre.name}"
+      if genre.items.empty?
+        puts "\tNo items in this genre."
+      else
+        puts "\tItems in this genre:"
+        genre.items.each do |item|
+          puts "\tpublish_date: #{item.publish_date}, on_spotify: #{item.on_spotify}"
+        end
+      end
     end
   end
 
@@ -97,28 +106,10 @@ class App
   end
 
   def add_album
-    print "Create an album\n"
-
-    album_func = MusicAlbumfunc.new
-    publish_dates = album_func.publish_date
-
-    print 'On_spotify: '
-    on_spotify = gets.chomp
-
-    print 'archived_status [Y/N]: '
-    archived = gets.chomp.upcase
-    if %w[Y N].include?(archived)
-      if archived == 'Y'
-        archived = true
-      elsif archived == 'N'
-        archived = false
-      end
-      @albums << MusicAlbum.new(publish_dates, on_spotify, archived: archived)
-      print "Album created successfully!\n"
-    else
-      print "Invalid option type Y or N\n"
-      nil
-    end
+    album_func = MusicAlbumFunc.new
+    @albums.concat(album_func.create_album)
+    @genres.concat(album_func.create_genre)
+    print "Album created successfully!\n"
   end
 
   def add_game
@@ -130,12 +121,17 @@ class App
 
   def add_data
     @game_data.saved_data(@games, @authors)
+    @music_album_data.save_data(@albums, @genres)
   end
 
   def load_data
     load_game_data = @game_data.load_data
     @games.concat(load_game_data[:games])
     @authors.concat(load_game_data[:author])
+    load_album_data = @music_album_data.load_data
+    puts load_album_data[:music_albums]
+    @albums.concat(load_album_data[:music_albums])
+    @genres.concat(load_album_data[:genres])
   end
 
   def exit_app

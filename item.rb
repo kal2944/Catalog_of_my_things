@@ -8,6 +8,7 @@ class Item
     @publish_date = publish_date
     @archive = archived
     @author ||= []
+    @genre ||= []
   end
 
   def move_to_archive
