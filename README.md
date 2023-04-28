@@ -36,6 +36,7 @@
 # 📖 Project Name
 
 ## Catalog of My Things
+>This is a console app that allows the user to keep a record of different types of things they owns: books, music albums and games.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -45,18 +46,29 @@
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
--
--
--
+- **Modular Implementation**
+
+> Each class is implemented in a separate .rb file, allowing for easy management of the codebase.
+
+- **Custom Setters**
+
+> Custom setters for 1-to-many relationships allow for easy management of collections.
+
+- **User Interface**
+
+> The user interface provides users with a list of options to perform, making it easy to manage the system.
+
+- **Data Persistence**
+
+> All data is saved in .json files, ensuring that user data is preserved between sessions.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LIVE DEMO -->
 
-## 🚀 Live Demo <a name="live-demo"></a>
+## 🚀 Presentation Video<a name="live-demo"></a>
 
- [not available]() 
+Click [here]() 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -101,13 +113,6 @@ $ bundle install (install dependencies)
 
 $ ruby main.rb (run the app locally)
 ```
-### Usage
-
-This website is applicable for both mobile and desktop version.
-
-### Deployment
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
@@ -140,8 +145,9 @@ This website is applicable for both mobile and desktop version.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
--
--
+- [ ] **Removing selected items (book, game, albums)**
+- [ ] **Add genre, label and author to selected items**
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
