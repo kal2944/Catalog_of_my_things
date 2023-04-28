@@ -8,6 +8,10 @@ require_relative 'music_album'
 require_relative 'author'
 require_relative 'genre'
 require_relative 'save_load_game_data'
+require_relative 'create_book'
+require_relative 'book'
+require_relative 'label'
+require_relative 'save_load_book_data'
 require_relative 'save_load_musicalbum_genre_data'
 
 class App
@@ -26,6 +30,7 @@ class App
 
   def initialize
     @game_data = SaveLoadGameData.new
+    @book_data = SaveLoadBookData.new
     @books = []
     @music_album_data = SaveLoadMusicAlbumData.new
     @albums = []
@@ -43,7 +48,13 @@ class App
   end
 
   def list_books
-    puts 'This will list the books'
+    return puts 'no books found' if @books.empty?
+
+    puts 'list_books'
+    @books.each_with_index do |book, index|
+      puts "#{index}) publisher: #{book.publisher},
+      cover_state: #{book.cover_state}, publish_date: #{book.publish_date}"
+    end
   end
 
   def list_albums
@@ -81,7 +92,19 @@ class App
   end
 
   def list_labels
-    puts 'This will list the labels'
+    return puts 'No labels found.' if @labels.empty?
+
+    @labels.each_with_index do |label, index|
+      puts "#{index}) title: #{label.title} color: #{label.color}"
+      if label.items.empty?
+        puts "\tNo items in this label."
+      else
+        puts "\tItems in this label:"
+        label.items.each do |item|
+          puts "\t- publisher: #{item.publisher} cover_state: (#{item.cover_state}) publish_date: #{item.publish_date}"
+        end
+      end
+    end
   end
 
   def list_authors
@@ -102,7 +125,10 @@ class App
   end
 
   def add_book
-    puts 'This will add a book'
+    book_func = BookFunc.new
+    @books.concat(book_func.create_book)
+    @labels.concat(book_func.create_label)
+    puts 'Book created successfully!'
   end
 
   def add_album
@@ -122,9 +148,13 @@ class App
   def add_data
     @game_data.saved_data(@games, @authors)
     @music_album_data.save_data(@albums, @genres)
+    @book_data.save_data(@books, @labels)
   end
 
   def load_data
+    load_book_data = @book_data.load_data
+    @books.concat(load_book_data[:books])
+    @labels.concat(load_book_data[:labels])
     load_game_data = @game_data.load_data
     @games.concat(load_game_data[:games])
     @authors.concat(load_game_data[:author])
