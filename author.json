@@ -1,3 +1,22 @@
 [
-
+  {
+    "id": 185,
+    "first_name": "asds",
+    "last_name": "asd",
+    "items": [
+      {
+        "id": 908
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "first_name": "asd",
+    "last_name": "dasd",
+    "items": [
+      {
+        "id": 291
+      }
+    ]
+  }
 ]

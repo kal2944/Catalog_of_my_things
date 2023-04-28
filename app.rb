@@ -12,6 +12,7 @@ require_relative 'create_book'
 require_relative 'book'
 require_relative 'label'
 require_relative 'save_load_book_data'
+require_relative 'save_load_musicalbum_genre_data'
 
 class App
   MENU_OPTIONS = {
@@ -31,7 +32,7 @@ class App
     @game_data = SaveLoadGameData.new
     @book_data = SaveLoadBookData.new
     @books = []
-    @albums = []
+    @albums = SaveLoadMusicAlbumData.new
     @games = []
     @authors = []
     @labels = []
@@ -102,6 +103,15 @@ class App
 
     @authors.each_with_index do |author, index|
       puts "#{index}) First_name: #{author.first_name}, Last_name: #{author.last_name}"
+      if author.items.empty?
+        puts "\tNo items in this author."
+      else
+        puts "\tItems in this author:"
+        author.items.each do |item|
+          puts "\tpublish_date: #{item.publish_date}, multiplayer: #{item.multiplayer},
+          last_played_at: #{item.last_played_at}"
+        end
+      end
     end
   end
 
@@ -139,25 +149,9 @@ class App
 
   def add_game
     game_func = GameFunc.new
-    publish_dates = game_func.publish_date
-    print 'Multiplayer: '
-    multiplayer = gets.chomp
-    last_played = game_func.last_played_at
-    print 'archived_status [Y/N]: '
-    archived = gets.chomp.upcase
-    if %w[Y N].include?(archived)
-      if archived == 'Y'
-        archived = true
-      elsif archived == 'N'
-        archived = false
-      end
-      @games << Game.new(publish_dates, multiplayer, last_played, archived: archived)
-      @authors << game_func.create_author
-      print "Game created successfully!\n"
-    else
-      print "Invalid option type Y or N\n"
-      nil
-    end
+    @games.concat(game_func.create_game)
+    @authors.concat(game_func.create_author)
+    print "Game created successfully!\n"
   end
 
   def add_data
@@ -169,6 +163,9 @@ class App
     load_book_data = @book_data.load_data
     @books.concat(load_book_data[:books])
     @labels.concat(load_book_data[:labels])
+    load_game_data = @game_data.load_data
+    @games.concat(load_game_data[:games])
+    @authors.concat(load_game_data[:author])
   end
 
   def exit_app
