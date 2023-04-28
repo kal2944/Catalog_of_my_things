@@ -63,7 +63,6 @@ class GameFunc
     last_name = gets.chomp
     author = Author.new(first_name, last_name)
     author.add_item(@game)
-    puts author.inspect
     @authors << author
     @authors
   end

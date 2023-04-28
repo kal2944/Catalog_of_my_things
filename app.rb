@@ -43,6 +43,7 @@ class App
   def option_select
     selected_opt = gets.chomp
     action = MENU_OPTIONS[selected_opt]
+    puts 'invalid number' unless MENU_OPTIONS[selected_opt]
     send(action) if action
     exit_app unless action
   end
@@ -52,7 +53,7 @@ class App
 
     puts 'list_books'
     @books.each_with_index do |book, index|
-      puts "#{index}) publisher: #{book.publisher},
+      puts "#{index + 1}) publisher: #{book.publisher},
       cover_state: #{book.cover_state}, publish_date: #{book.publish_date}"
     end
   end
@@ -61,7 +62,7 @@ class App
     return puts 'no albums found' if @albums.empty?
 
     @albums.each_with_index do |album, index|
-      puts "#{index}) Publish_date: #{album.publish_date}, On_spotify: #{album.on_spotify},
+      puts "#{index + 1}) Publish_date: #{album.publish_date}, On_spotify: #{album.on_spotify},
       Archived: #{album.archived}"
     end
   end
@@ -70,7 +71,7 @@ class App
     return puts 'no games found' if @games.empty?
 
     @games.each_with_index do |game, index|
-      puts "#{index}) Publish_date: #{game.publish_date}, Multiplayer: #{game.multiplayer},
+      puts "#{index + 1}) Publish_date: #{game.publish_date}, Multiplayer: #{game.multiplayer},
       Last_played_at: #{game.last_played_at}"
     end
   end
@@ -79,7 +80,7 @@ class App
     return puts 'no genre found' if @genres.empty?
 
     @genres.each_with_index do |genre, index|
-      puts "#{index}) Name: #{genre.name}"
+      puts "#{index + 1}) Name: #{genre.name}"
       if genre.items.empty?
         puts "\tNo items in this genre."
       else
@@ -95,7 +96,7 @@ class App
     return puts 'No labels found.' if @labels.empty?
 
     @labels.each_with_index do |label, index|
-      puts "#{index}) title: #{label.title} color: #{label.color}"
+      puts "#{index + 1}) title: #{label.title} color: #{label.color}"
       if label.items.empty?
         puts "\tNo items in this label."
       else
@@ -111,7 +112,7 @@ class App
     return puts 'no author found' if @authors.empty?
 
     @authors.each_with_index do |author, index|
-      puts "#{index}) First_name: #{author.first_name}, Last_name: #{author.last_name}"
+      puts "#{index + 1}) First_name: #{author.first_name}, Last_name: #{author.last_name}"
       if author.items.empty?
         puts "\tNo items in this author."
       else
@@ -159,7 +160,6 @@ class App
     @games.concat(load_game_data[:games])
     @authors.concat(load_game_data[:author])
     load_album_data = @music_album_data.load_data
-    puts load_album_data[:music_albums]
     @albums.concat(load_album_data[:music_albums])
     @genres.concat(load_album_data[:genres])
   end
