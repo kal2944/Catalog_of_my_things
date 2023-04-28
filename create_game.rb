@@ -1,4 +1,31 @@
 class GameFunc
+  def initialize
+    @games = []
+    @authors = []
+  end
+
+  def create_game
+    publish_dates = publish_date
+    print 'Multiplayer: '
+    multiplayer = gets.chomp
+    last_played = last_played_at
+    print 'archived_status [Y/N]: '
+    archived = gets.chomp.upcase
+    if %w[Y N].include?(archived)
+      if archived == 'Y'
+        archived = true
+      elsif archived == 'N'
+        archived = false
+      end
+      @game = Game.new(publish_dates, multiplayer, last_played, archived: archived)
+      @games << @game
+    else
+      print "Invalid option type Y or N\n"
+      nil
+    end
+    @games
+  end
+
   def publish_date
     print "Create a game\n"
     print "write publish_date (yyyy-mm-dd) \nPublish_date: "
@@ -34,6 +61,10 @@ class GameFunc
     first_name = gets.chomp
     print 'Last_name: '
     last_name = gets.chomp
-    Author.new(first_name, last_name)
+    author = Author.new(first_name, last_name)
+    author.add_item(@game)
+    puts author.inspect
+    @authors << author
+    @authors
   end
 end

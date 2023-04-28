@@ -19,7 +19,9 @@ class SaveLoadGameData
         id: author.id,
         first_name: author.first_name,
         last_name: author.last_name,
-        items: author.items
+        items: author.items.map do |item|
+          { id: item.id }
+        end
       }
     end))
   end
@@ -29,8 +31,6 @@ class SaveLoadGameData
     load_authors
     { games: @games, author: @authors }
   end
-
-  private
 
   def load_games
     games = File.read('games.json')
@@ -56,6 +56,14 @@ class SaveLoadGameData
         author_data['last_name']
       )
       author.instance_variable_set(:@id, author_data['id'])
+      find_game = nil
+      @games.each do |game|
+        if game.id == author_data['items'][0]['id']
+          find_game = game
+          break
+        end
+      end
+      author.add_item(find_game) if find_game
       @authors << author
     end
   end
