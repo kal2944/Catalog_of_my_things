@@ -1,0 +1,23 @@
+[
+  {
+    "id": 908,
+    "publish_date": "1111-11-11",
+    "multiplayer": "sdf",
+    "last_played_at": "1111-11-11",
+    "archived": true
+  },
+  {
+    "id": 291,
+    "publish_date": "2222-02-22",
+    "multiplayer": "asdfas",
+    "last_played_at": "2222-02-22",
+    "archived": true
+  },
+  {
+    "id": 319,
+    "publish_date": "2022-09-09",
+    "multiplayer": "1",
+    "last_played_at": "2020-09-09",
+    "archived": true
+  }
+]
